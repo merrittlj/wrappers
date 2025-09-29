@@ -130,7 +130,7 @@ let
           options = eval.options;
           config = eval.config;
         in
-        makeWrapper {
+        wrapPackage {
           pkgs = config.pkgs;
           package = config.package;
           runtimeInputs = config.extraPackages;
@@ -164,7 +164,7 @@ let
     # Example
 
     ```nix
-    makeWrapper {
+    wrapPackage {
       pkgs = pkgs;
       package = pkgs.curl;
       runtimeInputs = [ pkgs.jq ];
@@ -181,7 +181,7 @@ let
     }
 
     # Or with custom wrapper:
-    makeWrapper pkgs.someProgram {
+    wrapPackage pkgs.someProgram {
       wrapper = { exePath, flagsString, envString, preHook, ... }: ''
         ${envString}
         ${preHook}
@@ -191,7 +191,7 @@ let
     }
     ```
   */
-  makeWrapper =
+  wrapPackage =
     {
       pkgs,
       package,
@@ -369,5 +369,5 @@ let
     wrappedPackage;
 in
 {
-  inherit wrapModule makeWrapper;
+  inherit wrapModule wrapPackage;
 }

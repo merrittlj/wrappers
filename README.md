@@ -12,7 +12,7 @@ Then this library is for you!
 
 This library provides two main components:
 
-- `lib.makeWrapper`: Low-level function to wrap packages with additional flags, environment variables, and runtime dependencies
+- `lib.wrapPackage`: Low-level function to wrap packages with additional flags, environment variables, and runtime dependencies
 - `lib.wrapModule`: High-level function to create reusable wrapper modules with type-safe configuration options
 - `wrapperModules`: Pre-built wrapper modules for common packages (mpv, notmuch, etc.)
 
@@ -42,12 +42,12 @@ This library provides two main components:
 }
 ```
 
-### Using makeWrapper Directly
+### Using wrapPackage Directly
 
 ```nix
 { pkgs, wrappers, ... }:
 
-wrappers.lib.makeWrapper {
+wrappers.lib.wrapPackage {
   inherit pkgs;
   package = pkgs.curl;
   runtimeInputs = [ pkgs.jq ];
@@ -96,7 +96,7 @@ wlib.wrapModule (wlib: { config, ... }: {
 
 ## Technical Details
 
-### makeWrapper Function
+### wrapPackage Function
 
 Arguments:
 - `pkgs`: nixpkgs instance
