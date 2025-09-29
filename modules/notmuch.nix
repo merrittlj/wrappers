@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-wlib.mkWrapper (
+wlib.wrapModule (
   wlib:
   { config, ... }:
   let

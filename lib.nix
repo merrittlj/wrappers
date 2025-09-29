@@ -5,7 +5,7 @@ let
     returns an attribute set with options and apply function.
 
     Example usage:
-      helloWrapper = mkWrapper (wlib: { config, ... }: {
+      helloWrapper = wrapModule (wlib: { config, ... }: {
         options.greeting = lib.mkOption {
           type = lib.types.str;
           default = "hello";
@@ -23,7 +23,7 @@ let
 
       # This will return a derivation that wraps the hello package with the --greeting flag set to "hi".
   */
-  mkWrapper =
+  wrapModule =
     declarationArgs:
     let
       declaration = declarationArgs wrapperLib;
@@ -369,5 +369,5 @@ let
     wrappedPackage;
 in
 {
-  inherit mkWrapper makeWrapper;
+  inherit wrapModule makeWrapper;
 }

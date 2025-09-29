@@ -13,7 +13,7 @@ Then this library is for you!
 This library provides two main components:
 
 - `lib.makeWrapper`: Low-level function to wrap packages with additional flags, environment variables, and runtime dependencies
-- `lib.mkWrapper`: High-level function to create reusable wrapper modules with type-safe configuration options
+- `lib.wrapModule`: High-level function to create reusable wrapper modules with type-safe configuration options
 - `wrapperModules`: Pre-built wrapper modules for common packages (mpv, notmuch, etc.)
 
 ## Usage
@@ -70,7 +70,7 @@ wrappers.lib.makeWrapper {
 ```nix
 { wlib, lib }:
 
-wlib.mkWrapper (wlib: { config, ... }: {
+wlib.wrapModule (wlib: { config, ... }: {
   options = {
     profile = lib.mkOption {
       type = lib.types.enum [ "fast" "quality" ];
@@ -119,7 +119,7 @@ The function:
 - Generates a shell wrapper script with proper escaping
 - Handles multi-output derivations correctly
 
-### mkWrapper Function
+### wrapModule Function
 
 Creates a reusable wrapper module with:
 - Type-safe configuration options via the module system
