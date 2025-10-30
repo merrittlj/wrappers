@@ -430,7 +430,7 @@ let
               # Symlink all paths to the main output
               mkdir -p $out
               for path in ${lib.concatStringsSep " " (map toString paths)}; do
-                ${pkgs.lndir}/bin/lndir -silent "$path" $out
+                ${pkgs.outils}/bin/lndir -silent "$path" $out
               done
 
               # Exclude specified files
@@ -490,7 +490,7 @@ let
                     if [[ -n "''${${output}:-}" ]]; then
                       mkdir -p ${"$" + output}
                       # Only symlink from the original package's corresponding output
-                      ${pkgs.lndir}/bin/lndir -silent "${originalOutputs.${output}}" ${"$" + output}
+                      ${pkgs.outils}/bin/lndir -silent "${originalOutputs.${output}}" ${"$" + output}
                     fi
                   ''
                 else
